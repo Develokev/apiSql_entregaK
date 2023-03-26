@@ -64,8 +64,23 @@ const pool = new Pool({
         return result;
  }
 
+ const updateAuthor = async (body, id) => {
+    let client, result, data;
+    try {
+        const {name,surname,email,image} = body;
+        data= await client.query(queries.updateAuthorQuery, [name,surname,email,image,id]);
+    } catch (error) {
+        console.log(error)
+    }
+    finally {
+        client.release();
+    }
+    return result;
+ }
+
  module.exports={
     getAuthorByEmail,
     findAuthors,
-    createNewAuthor
+    createNewAuthor,
+    updateAuthor
  }
