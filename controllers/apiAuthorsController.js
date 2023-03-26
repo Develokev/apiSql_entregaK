@@ -1,4 +1,4 @@
-const {getAuthorByEmail, findAuthors, createNewAuthor} = require('../models/authorModel')
+const {getAuthorByEmail, findAuthors, createNewAuthor, updateAuthor} = require('../models/authorModel')
 
 const getAuthor=async(req,res)=>{
 
