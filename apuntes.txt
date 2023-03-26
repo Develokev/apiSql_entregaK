@@ -1,0 +1,9 @@
+Instalamos el PG, y el resto de las dependencias que solemos.
+Adicionalmente, el resto de la estructura de carpetas regular.
+
+los comentarios en SQL es doble guión "--"
+
+Si no nos dan esquemas, tenemos herramientas para poder generarlos y definirlos.
+
+Es importante el orden en el que se presentan las cosas en el ".sql" ya que se pueden exportar como un archivo ejecutable y se ejecutará en el orden en el que esté.
+
