@@ -69,12 +69,12 @@ const createAuthor=async(req,res)=>{
     }
 }
 
-const updateAuthor=async(req,res)=>{
+const updateSingleAuthor=async(req,res)=>{
     const id = req.params.id;
     let updatedAuthor;
 
     try {
-        updatedAuthor = await updateAuthorQuery(req.body, id);
+        updatedAuthor = await updateAuthor(req.body, id);
         if(updatedAuthor){
             return res.status(200).json({
                 ok:true,
@@ -103,6 +103,6 @@ module.exports={
     getAuthor,
     getAllAuthors,
     createAuthor,
-    updateAuthor,
+    updateSingleAuthor,
     deleteAuthor
 }
