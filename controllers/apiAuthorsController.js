@@ -70,7 +70,29 @@ const createAuthor=async(req,res)=>{
 }
 
 const updateAuthor=async(req,res)=>{
-    
+    const id = req.params.id;
+    let updatedAuthor;
+
+    try {
+        updatedAuthor = await updateAuthorQuery(req.body, id);
+        if(updatedAuthor){
+            return res.status(200).json({
+                ok:true,
+                msg: 'Author SUCCESSFULLY updated'
+            })
+        } else {
+            res.status(400).json({
+                ok:false,
+                msg: 'FAILED to update author'
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            ok:false,
+            msg: 'FAILED to update author - SERVER'
+        })
+    }
+    return updatedAuthor;
 }
 
 const deleteAuthor=async(req,res)=>{

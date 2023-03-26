@@ -38,8 +38,8 @@ const queries={
 
     updateAuthorQuery:`
     UPDATE entries
-    SET title=$1,content=$2,date=$3,id_author=$4, category=$5
-    WHERE id_entry=$6`,
+    SET name=$1,surname=$2,email=$3,image=$4
+    WHERE id_author=$5`,
 
 }
 
