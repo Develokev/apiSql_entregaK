@@ -41,6 +41,10 @@ const queries={
     SET name=$1,surname=$2,email=$3,image=$4
     WHERE id_author=$5`,
 
+    deleteEntryQuery:`
+    DELETE FROM entries
+    WHERE title=$1`,
+
 }
 
 module.exports=queries;

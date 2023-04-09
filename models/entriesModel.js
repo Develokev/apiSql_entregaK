@@ -7,6 +7,7 @@ const pool = new Pool({
     database: 'blog',
     password: "admin"
 })
+
 const findEntriesByEmail =async (req,res) => { /*done*/
     let client,result;
 
@@ -81,9 +82,30 @@ const updateEntry = async (body, id) => {
     return result;
 }
 
+const deleteEntry = async (title) => {
+    let client, result, data;
+    try {
+        
+        // const {title} = body;
+        client = await pool.connect();
+        data = await client.query(queries.deleteEntryQuery, [title]);
+        result = data;
+
+    } catch (error) {
+        
+        console.log(error)
+
+    }
+    finally {
+        client.release()
+    }
+    return result;
+}
+
  module.exports={
     findEntriesByEmail,
     findEntries,
     createNewEntry,
-    updateEntry
+    updateEntry,
+    deleteEntry
  }
