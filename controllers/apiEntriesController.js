@@ -1,6 +1,6 @@
-const {findEntriesByEmail, findEntries, createNewEntry, updateEntryQuery} = require('../models/entriesModel')
+const {findEntriesByEmail, findEntries, createNewEntry, updateEntryQuery, deleteEntry} = require('../models/entriesModel')
 
-const getEntry=async(req,res)=>{ //*Done
+const getEntry=async(req,res)=>{ //*tested
     let data;
     let email = req.query.email;
     try {
@@ -23,7 +23,7 @@ const getEntry=async(req,res)=>{ //*Done
 }
 }
 
-const getAllEntries=async(req,res)=>{ //*done
+const getAllEntries=async(req,res)=>{ //*tested
     let data;
     // let entry = req.query
     try {
@@ -46,7 +46,7 @@ const getAllEntries=async(req,res)=>{ //*done
 }
 }
 
-const createEntries=async(req,res)=>{ //*done
+const createEntries=async(req,res)=>{ //*tested
 
     try {
         const newEntry = await createNewEntry(req.body);
@@ -69,7 +69,7 @@ const createEntries=async(req,res)=>{ //*done
     }
 }
 
-const updateEntries=async(req,res)=>{ //*done
+const updateEntries=async(req,res)=>{ //*tested
     const id = req.params.id;
 
     try {
@@ -94,10 +94,30 @@ const updateEntries=async(req,res)=>{ //*done
     return updatedEntry;
 }
 
-const deleteEntries=async(req,res)=>{
+const deleteEntries=async(req,res)=>{ //*tested
 
+        const title = req.params.title;
+    try {
+        const deletedEntry = await deleteEntry(title)
+        if(deletedEntry){
+            return res.status(200).json({
+                ok:true,
+                msg: 'Entry successfully deleted'
+            })
+        } else {
+            res.status(400).json({
+                ok:false,
+                msg: 'FAILED deleting entry'
+            })
+        }
+        
+    } catch (error) {
+        res.status(500).json({
+            ok:false,
+            msg: 'FAILED deleting entry - SERVER'
+        })
+    }
 }
-
 
 module.exports={
     getEntry,
