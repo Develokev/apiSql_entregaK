@@ -1,4 +1,4 @@
-const {findEntriesByEmail, findEntries, createNewEntry, updateEntryQuery, deleteEntry} = require('../models/entriesModel')
+const {findEntriesByEmail, findEntries, createNewEntry, updateEntry, deleteEntry} = require('../models/entriesModel')
 
 const getEntry=async(req,res)=>{ //*tested
     let data;
@@ -73,7 +73,7 @@ const updateEntries=async(req,res)=>{ //*tested
     const id = req.params.id;
 
     try {
-        const updatedEntry = await updateEntryQuery(req.body, id)
+        const updatedEntry = await updateEntry(req.body, id)
         if(updatedEntry){
             return res.status(200).json({
                 ok:true,
