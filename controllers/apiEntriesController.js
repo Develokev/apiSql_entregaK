@@ -25,12 +25,9 @@ const getEntry=async(req,res)=>{ //*tested
 
 const getAllEntries=async(req,res)=>{ //*tested
     let data;
-    // let entry = req.query
     try {
         data = await findEntries();
         if(data){
-            
-            console.log(data);
 
             res.status(200).json({
                 ok:true,
